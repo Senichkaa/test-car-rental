@@ -1,6 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 import 'modern-normalize';
-import { Manrope } from '../fonts/manrope-regular.woff2';
+import Manrope from '../fonts/manrope-regular.woff2';
 
 export const GlobalStyles = createGlobalStyle`
     @font-face {
