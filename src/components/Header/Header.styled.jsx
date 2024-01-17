@@ -11,9 +11,11 @@ export const MainHeader = styled.header`
 
 export const HeaderWrapper = styled.div`
   border: 1px solid ${variables.basicGray};
-  border-radius: 16px;
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
   border-top: none;
 `;
+
 export const HeaderTitle = styled(NavLink)`
   color: #56615a;
   text-decoration: none;
