@@ -9,8 +9,15 @@ import {
   HeroButton,
   ButtonWrapper,
 } from './Hero.styled';
+import { useNavigate } from 'react-router-dom';
 
 function Hero() {
+  const navigate = useNavigate();
+
+  const navigateHandler = () => {
+    navigate('/catalog');
+  };
+
   return (
     <HeroSection>
       <MainContainer>
@@ -26,7 +33,9 @@ function Hero() {
             It couldn't be simpler!
           </HeroText>
           <ButtonWrapper>
-            <HeroButton type="button">To the catalog</HeroButton>
+            <HeroButton type="button" onClick={navigateHandler}>
+              To the catalog
+            </HeroButton>
           </ButtonWrapper>
         </TextWrapper>
       </MainContainer>

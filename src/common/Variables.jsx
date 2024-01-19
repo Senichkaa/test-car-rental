@@ -6,4 +6,6 @@ export const variables = {
   dropdownGray: 'rgba(18, 20, 23, 0.2)',
   secondaryGray: 'rgba(18, 20, 23, 0.5)',
   secondaryBlack: '#363535',
+  inputGray: '#F7F7FB;',
+  dropdownBorder: '#1214170D',
 };
