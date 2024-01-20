@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Card,
   ImageWrapper,
@@ -9,6 +9,7 @@ import {
   DescriptionPart,
   MoreButton,
 } from './CarCard.styled';
+import CarModal from 'components/CarModal/CarModal';
 
 function CarCard({ car }) {
   const {
@@ -25,6 +26,16 @@ function CarCard({ car }) {
   const fullAddress = address.split(', ');
   const town = fullAddress[1];
   const country = fullAddress[2];
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
 
   return (
     <Card>
@@ -47,7 +58,10 @@ function CarCard({ car }) {
         <DescriptionPart>{id}</DescriptionPart>
         <DescriptionPart>{accessories[2]}</DescriptionPart>
       </TextWrapper>
-      <MoreButton type="button">Learn more</MoreButton>
+      <MoreButton type="button" onClick={openModal}>
+        Learn more
+      </MoreButton>
+      {isModalOpen && <CarModal onClose={closeModal} car={car} />}
     </Card>
   );
 }

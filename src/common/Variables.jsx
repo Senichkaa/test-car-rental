@@ -8,4 +8,5 @@ export const variables = {
   secondaryBlack: '#363535',
   inputGray: '#F7F7FB;',
   dropdownBorder: '#1214170D',
+  conditionsBg: '#F9F9F9',
 };
