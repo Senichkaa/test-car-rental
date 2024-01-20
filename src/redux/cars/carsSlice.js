@@ -52,7 +52,7 @@ export const carsSlice = createSlice({
       .addCase(fetchAllCars.fulfilled, (state, action) => {
         return {
           ...state,
-          cars: [...action.payload],
+          allCars: [...action.payload],
           isLoadMore: action.payload.length === state.limit,
           isLoading: false,
         };
@@ -60,7 +60,6 @@ export const carsSlice = createSlice({
       .addCase(fetchCarsPerPage.rejected, (state, action) => {
         return {
           ...state,
-          cars: [...action.payload],
           isLoading: false,
         };
       })
@@ -74,7 +73,7 @@ export const carsSlice = createSlice({
       .addCase(fetchCarsPerPage.fulfilled, (state, action) => {
         return {
           ...state,
-          cars: [...action.payload],
+          carsPerPage: [...action.payload],
           isLoading: false,
         };
       });

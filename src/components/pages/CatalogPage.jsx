@@ -16,7 +16,7 @@ import Filter from 'components/Filter/Filter';
 import Cars from 'components/Cars/Cars';
 import { MainContainer } from 'common/MainContainer';
 import { LoadMoreButton } from 'components/Cars/CarCard/CarCard.styled';
-import { brands } from 'components/Filter/brands';
+// import { brands } from 'components/Filter/brands';
 import {
   setFilteredCars,
   setIsFiltered,
