@@ -8,8 +8,15 @@ import {
   TextWrapper,
   DescriptionPart,
   MoreButton,
+  FavoriteHeart,
 } from './CarCard.styled';
 import CarModal from 'components/CarModal/CarModal';
+import {
+  addToFavoriteList,
+  removeFavoriteList,
+} from '../../../redux/favorite/favoriteSlice';
+import sprite from '../../../assets/sprite.svg';
+import { useSelector, useDispatch } from 'react-redux';
 
 function CarCard({ car }) {
   const {
@@ -29,6 +36,10 @@ function CarCard({ car }) {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const favorite = useSelector(state => state.favorite.favorites);
+  const favoriteStatus = favorite.includes(id);
+  const dispatch = useDispatch();
+
   const openModal = () => {
     setIsModalOpen(true);
   };
@@ -37,9 +48,28 @@ function CarCard({ car }) {
     setIsModalOpen(false);
   };
 
+  const favoriteHandler = () => {
+    if (favoriteStatus) {
+      dispatch(removeFavoriteList(id));
+    } else {
+      dispatch(addToFavoriteList(id));
+    }
+  };
+
   return (
     <Card>
       <ImageWrapper>
+        <FavoriteHeart onClick={favoriteHandler}>
+          {favoriteStatus ? (
+            <svg width={18} height={18}>
+              <use href={`${sprite}#icon-heartactive`} />
+            </svg>
+          ) : (
+            <svg width={18} height={18}>
+              <use href={`${sprite}#icon-heartbasic`} />
+            </svg>
+          )}
+        </FavoriteHeart>
         <Image src={img} alt="car" />
       </ImageWrapper>
       <CardTitle>

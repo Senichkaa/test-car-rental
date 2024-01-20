@@ -2,6 +2,7 @@ import { variables } from 'common/Variables';
 import styled from 'styled-components';
 
 export const Card = styled.li`
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -94,4 +95,14 @@ export const LoadMoreButton = styled.button`
   color: #fff;
   background-color: ${variables.basicBlue};
   border-radius: 12px;
+`;
+
+export const FavoriteHeart = styled.button`
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  margin: 0;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
 `;
