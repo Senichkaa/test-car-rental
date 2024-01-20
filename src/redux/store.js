@@ -11,16 +11,23 @@ import {
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { carsSlice } from './cars/carsSlice';
+import { favoriteSlice } from './favorite/favoriteSlice';
 
-const persistConfig = {
+const carPersistConfig = {
   key: 'car',
   storage,
   whitelist: ['filteredCars', 'filter', 'isFiltered', 'page'],
 };
 
+const favoritePersistConfig = {
+  key: 'favorite',
+  storage,
+};
+
 export const store = configureStore({
   reducer: {
-    cars: persistReducer(persistConfig, carsSlice.reducer),
+    cars: persistReducer(carPersistConfig, carsSlice.reducer),
+    favorite: persistReducer(favoritePersistConfig, favoriteSlice.reducer),
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
