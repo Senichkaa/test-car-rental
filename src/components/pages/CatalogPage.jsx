@@ -6,7 +6,7 @@ import {
   selectCarsPerPage,
   selectFilters,
   selectIsFiltered,
-  // selectFilteredCars,
+  selectFilteredCars,
   selectIsLoading,
   selectPage,
   // selectIsLoadMore,
@@ -29,7 +29,7 @@ const CatalogPage = () => {
   const allCars = useSelector(selectAllCars);
   const carsPerPage = useSelector(selectCarsPerPage);
   const isFiltered = useSelector(selectIsFiltered);
-  // const filteredCars = useSelector(selectFilteredCars);
+  const filteredCars = useSelector(selectFilteredCars);
   const filters = useSelector(selectFilters);
   const page = useSelector(selectPage);
   const isLoading = useSelector(selectIsLoading);
@@ -54,7 +54,7 @@ const CatalogPage = () => {
           changeIsFiltered={value => dispatch(setIsFiltered(value))}
           changeFilter={value => dispatch(setFilters(value))}
         />
-        {!isLoading && <Cars cars={carsPerPage} />}
+        {!isLoading && <Cars cars={isFiltered ? filteredCars : carsPerPage} />}
 
         {/* {isLoadMore && (
           <LoadMoreButton

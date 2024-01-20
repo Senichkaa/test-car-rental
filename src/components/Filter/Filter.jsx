@@ -40,6 +40,7 @@ const Filter = ({
   const dispatch = useDispatch();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [selectedBrand, setSelectedBrand] = useState('');
+  const [selectedPrice, setSelectedPrice] = useState('');
 
   const [, setSearchParams] = useSearchParams();
 
@@ -81,7 +82,7 @@ const Filter = ({
         case 'make':
           return !value || value >= car[param];
         case 'rentalPrice':
-          return !value || value >= car[param];
+          return !value || car[param] <= value;
         case 'startMileage':
           return (
             value <= car['mileage'] &&
@@ -105,6 +106,9 @@ const Filter = ({
   const resetHandler = () => {
     changeFilter({
       make: '',
+      rentalPrice: '',
+      startMileage: '',
+      endMileage: '',
     });
     changeIsFiltered(false);
   };
@@ -113,6 +117,10 @@ const Filter = ({
     const filteredCars = cars.filter(car => filterCars(car, filters));
     inFilter(filteredCars);
     changeIsFiltered(true);
+
+    if (isFilterEmpty()) {
+      return;
+    }
   };
 
   const gradation = 10;
@@ -136,6 +144,7 @@ const Filter = ({
 
   const selectPriceHandler = selectedPrice => {
     changeFilter({ rentalPrice: selectedPrice });
+    setSelectedPrice(selectedPrice);
     setIsDropdownOpen(false);
   };
 
@@ -162,11 +171,7 @@ const Filter = ({
                 {brands.map((item, index) => (
                   <BrandsLi
                     key={index}
-                    className={
-                      filters && filters.make && item === filters.make
-                        ? 'active'
-                        : ''
-                    }
+                    className={item === filters.make ? 'active' : ''}
                     onClick={() => searchBrandHandler(item)}
                   >
                     {item}
@@ -178,7 +183,12 @@ const Filter = ({
         </InputWrapper>
         <InputWrapper>
           <Label htmlFor="price">Price/ 1 hour</Label>
-          <PriceInput id="price" readOnly placeholder="to $" />
+          <PriceInput
+            id="price"
+            readOnly
+            placeholder="to $"
+            value={selectedPrice}
+          />
           <DropButton
             type="button"
             onClick={() => switchDropdownMenu('priceList')}
@@ -188,18 +198,15 @@ const Filter = ({
           {isDropdownOpen === 'priceList' && (
             <PriceDropdown>
               <PriceList>
-                {priceOptions.map((item, index) => (
+                {priceOptions.map((option, idx) => (
                   <PriceListOption
-                    key={index}
+                    key={idx}
                     className={
-                      item.label ===
-                      (filters && filters.rentalPrice === item.value)
-                        ? 'active'
-                        : ''
+                      option.label === filters.rentalPrice ? 'active' : ''
                     }
-                    onClick={() => selectPriceHandler(item.value)}
+                    onClick={() => selectPriceHandler(option.value)}
                   >
-                    {item.label}
+                    {option.label}
                   </PriceListOption>
                 ))}
               </PriceList>
