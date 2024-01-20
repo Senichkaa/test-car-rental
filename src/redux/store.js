@@ -13,9 +13,9 @@ import storage from 'redux-persist/lib/storage';
 import { carsSlice } from './cars/carsSlice';
 
 const persistConfig = {
-  key: 'cars',
+  key: 'car',
   storage,
-  whitelist: ['filteredCars', 'filter', 'isFiltered'],
+  whitelist: ['filteredCars', 'filter', 'isFiltered', 'page'],
 };
 
 export const store = configureStore({

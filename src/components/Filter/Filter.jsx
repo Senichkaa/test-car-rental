@@ -61,7 +61,7 @@ const Filter = ({
   }, [filters, isFilterEmpty, setSearchParams]);
 
   const searchBrandHandler = selectedBrand => {
-    changeFilter({ make: selectedBrand });
+    dispatch(changeFilter({ make: selectedBrand }));
     setSelectedBrand(selectedBrand);
     setIsDropdownOpen(false);
   };
