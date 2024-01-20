@@ -50,12 +50,10 @@ export const carsSlice = createSlice({
         };
       })
       .addCase(fetchAllCars.fulfilled, (state, action) => {
-        return {
-          ...state,
-          allCars: [...action.payload],
-          isLoadMore: action.payload.length === state.limit,
-          isLoading: false,
-        };
+        const totalCars = action.payload.length;
+        state.allCars = [...action.payload];
+        state.isLoadMore = totalCars > state.limit;
+        state.isLoading = false;
       })
       .addCase(fetchCarsPerPage.rejected, (state, action) => {
         return {
@@ -71,11 +69,14 @@ export const carsSlice = createSlice({
         };
       })
       .addCase(fetchCarsPerPage.fulfilled, (state, action) => {
-        return {
-          ...state,
-          carsPerPage: [...action.payload],
-          isLoading: false,
-        };
+        const { data, page } = action.payload;
+        if (page === 1) {
+          state.carsPerPage = data;
+        } else {
+          state.carsPerPage = [...state.carsPerPage, ...data];
+        }
+        state.isLoading = false;
+        state.isLoadMore = data.length === state.limit;
       });
   },
 });

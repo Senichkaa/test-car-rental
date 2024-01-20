@@ -6,3 +6,4 @@ export const selectIsFiltered = state => state.cars.isFiltered;
 export const selectPage = state => state.cars.page;
 export const selectLimit = state => state.cars.limit;
 export const selectIsLoading = state => state.cars.isLoading;
+export const selectIsLoadMore = state => state.cars.isLoadMore;

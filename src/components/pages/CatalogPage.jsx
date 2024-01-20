@@ -9,13 +9,16 @@ import {
   selectFilteredCars,
   selectIsLoading,
   selectPage,
-  // selectIsLoadMore,
+  selectIsLoadMore,
 } from '../../redux/cars/carsSelectors';
 import { fetchAllCars, fetchCarsPerPage } from '../../redux/cars/carsThunk';
 import Filter from 'components/Filter/Filter';
 import Cars from 'components/Cars/Cars';
 import { MainContainer } from 'common/MainContainer';
-import { CatalogSection, LoadMoreButton } from 'components/Cars/CarCard/CarCard.styled';
+import {
+  CatalogSection,
+  LoadMoreButton,
+} from 'components/Cars/CarCard/CarCard.styled';
 // import { brands } from 'components/Filter/brands';
 import {
   setFilteredCars,
@@ -33,7 +36,7 @@ const CatalogPage = () => {
   const filters = useSelector(selectFilters);
   const page = useSelector(selectPage);
   const isLoading = useSelector(selectIsLoading);
-  // const isLoadMore = useSelector(selectIsLoadMore);
+  const isLoadMore = useSelector(selectIsLoadMore);
 
   useEffect(() => {
     dispatch(fetchCarsPerPage(page));
@@ -43,6 +46,7 @@ const CatalogPage = () => {
     dispatch(fetchAllCars());
   }, [dispatch]);
 
+  console.log(isLoadMore);
   return (
     <CatalogSection>
       <MainContainer>
@@ -64,12 +68,15 @@ const CatalogPage = () => {
             Load some more
           </LoadMoreButton>
         )} */}
-        <LoadMoreButton
-          type="button"
-          onClick={() => dispatch(setPage(page + 1))}
-        >
-          Show more
-        </LoadMoreButton>
+
+        {isLoadMore && (
+          <LoadMoreButton
+            type="button"
+            onClick={() => dispatch(setPage(page + 1))}
+          >
+            Show more
+          </LoadMoreButton>
+        )}
       </MainContainer>
     </CatalogSection>
   );

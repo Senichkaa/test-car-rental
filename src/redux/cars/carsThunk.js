@@ -26,7 +26,7 @@ export const fetchCarsPerPage = createAsyncThunk(
           limit: 12,
         },
       });
-      return response.data;
+      return { data: response.data, page };
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }
