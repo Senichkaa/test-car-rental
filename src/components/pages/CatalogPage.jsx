@@ -2,32 +2,59 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-  // selectIsLoadMore,
+  selectAllCars,
+  selectCarsPerPage,
+  selectFilters,
+  selectIsFiltered,
+  // selectFilteredCars,
   selectIsLoading,
   selectPage,
+  // selectIsLoadMore,
 } from '../../redux/cars/carsSelectors';
-import { fetchCars } from '../../redux/cars/carsThunk';
+import { fetchAllCars, fetchCarsPerPage } from '../../redux/cars/carsThunk';
 import Filter from 'components/Filter/Filter';
 import Cars from 'components/Cars/Cars';
 import { MainContainer } from 'common/MainContainer';
 import { LoadMoreButton } from 'components/Cars/CarCard/CarCard.styled';
-import { brands } from 'components/Filter/brands';
-import { setPage } from '../../redux/cars/carsSlice';
+// import { brands } from 'components/Filter/brands';
+import {
+  setFilteredCars,
+  setIsFiltered,
+  setFilters,
+  setPage,
+} from '../../redux/cars/carsSlice';
 
 const CatalogPage = () => {
   const dispatch = useDispatch();
-  const isLoading = useSelector(selectIsLoading);
+  const allCars = useSelector(selectAllCars);
+  const carsPerPage = useSelector(selectCarsPerPage);
+  const isFiltered = useSelector(selectIsFiltered);
+  // const filteredCars = useSelector(selectFilteredCars);
+  const filters = useSelector(selectFilters);
   const page = useSelector(selectPage);
+  const isLoading = useSelector(selectIsLoading);
   // const isLoadMore = useSelector(selectIsLoadMore);
 
   useEffect(() => {
-    dispatch(fetchCars(page));
+    dispatch(fetchCarsPerPage(page));
   }, [dispatch, page]);
+
+  useEffect(() => {
+    dispatch(fetchAllCars());
+  }, [dispatch]);
+
   return (
     <section>
       <MainContainer>
-        <Filter />
-        {!isLoading && <Cars cars={brands} />}
+        <Filter
+          cars={allCars}
+          filters={filters}
+          inFilter={value => dispatch(setFilteredCars(value))}
+          isFiltered={isFiltered}
+          changeIsFiltered={value => dispatch(setIsFiltered(value))}
+          changeFilter={value => dispatch(setFilters(value))}
+        />
+        {!isLoading && <Cars cars={carsPerPage} />}
 
         {/* {isLoadMore && (
           <LoadMoreButton
