@@ -139,8 +139,10 @@ const CarModal = ({ car, onClose }) => {
                 <Information>{allRentalConditions[1]}</Information>
                 <Information>{allRentalConditions[2]}</Information>
                 <Information>
-                  Mileage:{' '}
-                  <InformationSpan>{mileage.toString()}</InformationSpan>
+                  Mileage:
+                  <InformationSpan>
+                    {mileage.toLocaleString('en')}
+                  </InformationSpan>
                 </Information>
                 <Information>Price: {rentalPrice}</Information>
               </RentInformation>

@@ -85,10 +85,10 @@ export const CardsGrid = styled.ul`
 export const LoadMoreButton = styled.button`
   display: flex;
   justify-content: center;
-  /* align-items: center; */
+  align-items: center;
+  margin: 0 auto;
   height: 44px;
   padding: 12px 66px;
-  margin-bottom: 50px;
 
   font-size: 18px;
   line-height: 1.42;
@@ -105,4 +105,8 @@ export const FavoriteHeart = styled.button`
   background-color: transparent;
   border: none;
   cursor: pointer;
+`;
+
+export const CatalogSection = styled.section`
+  padding-bottom: 30px;
 `;

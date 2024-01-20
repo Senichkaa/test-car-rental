@@ -86,6 +86,7 @@ export const BrandsDropdown = styled.div`
   border: 1px solid ${variables.dropdownBorder};
   background: #fff;
   margin-top: 3px;
+  z-index: 1;
 
   &::-webkit-scrollbar {
     width: 16px;
@@ -154,6 +155,7 @@ export const PriceDropdown = styled.div`
   border: 1px solid ${variables.dropdownBorder};
   background: #fff;
   margin-top: 3px;
+  z-index: 1;
 
   &::-webkit-scrollbar {
     width: 15px;

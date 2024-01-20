@@ -15,7 +15,7 @@ import { fetchAllCars, fetchCarsPerPage } from '../../redux/cars/carsThunk';
 import Filter from 'components/Filter/Filter';
 import Cars from 'components/Cars/Cars';
 import { MainContainer } from 'common/MainContainer';
-import { LoadMoreButton } from 'components/Cars/CarCard/CarCard.styled';
+import { CatalogSection, LoadMoreButton } from 'components/Cars/CarCard/CarCard.styled';
 // import { brands } from 'components/Filter/brands';
 import {
   setFilteredCars,
@@ -44,7 +44,7 @@ const CatalogPage = () => {
   }, [dispatch]);
 
   return (
-    <section>
+    <CatalogSection>
       <MainContainer>
         <Filter
           cars={allCars}
@@ -71,7 +71,7 @@ const CatalogPage = () => {
           Show more
         </LoadMoreButton>
       </MainContainer>
-    </section>
+    </CatalogSection>
   );
 };
 
