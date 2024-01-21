@@ -119,13 +119,13 @@ const Filter = ({
   };
 
   const searchHandler = () => {
-    const filteredCars = cars.filter(car => filterCars(car, filters));
-    inFilter(filteredCars);
-    changeIsFiltered(true);
-
     if (isFilterEmpty()) {
       return;
     }
+
+    const filteredCars = cars.filter(car => filterCars(car, filters));
+    inFilter(filteredCars);
+    changeIsFiltered(true);
   };
 
   const gradation = 10;
@@ -147,6 +147,7 @@ const Filter = ({
     })
   );
 
+  console.log('is filtered:', isFiltered);
   const selectPriceHandler = selectedPrice => {
     changeFilter({ rentalPrice: selectedPrice });
     setSelectedPrice(selectedPrice);

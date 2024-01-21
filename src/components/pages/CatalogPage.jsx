@@ -68,7 +68,7 @@ const CatalogPage = () => {
           </LoadMoreButton>
         )} */}
 
-        {isLoadMore && (
+        {isLoadMore && !isFiltered && (
           <LoadMoreButton
             type="button"
             onClick={() => dispatch(setPage(page + 1))}
