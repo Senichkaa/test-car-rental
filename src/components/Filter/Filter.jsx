@@ -81,8 +81,11 @@ const Filter = ({
         case 'make':
           return !value || car[param] === value;
         case 'rentalPrice':
-          value = Number(value);
-          return !value || car[param] <= value;
+          value = Number(value.replace('$', ''));
+          return (
+            !value ||
+            (car[param] && Number(car[param].replace('$', '')) <= value)
+          );
         case 'startMileage':
           value = Number(value);
           if (filters.endMileage !== '') {
