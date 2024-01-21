@@ -72,6 +72,11 @@ export const MoreButton = styled.button`
   color: #fff;
   background-color: ${variables.basicBlue};
   border-radius: 12px;
+  transition: background-color 250ms ease-in-out;
+  &:hover,
+  &:focus {
+    background-color: ${variables.hoverBlue};
+  }
 `;
 export const CardsGrid = styled.ul`
   display: flex;
@@ -87,14 +92,17 @@ export const LoadMoreButton = styled.button`
   justify-content: center;
   align-items: center;
   margin: 0 auto;
-  height: 44px;
-  padding: 12px 66px;
 
-  font-size: 18px;
-  line-height: 1.42;
-  color: #fff;
-  background-color: ${variables.basicBlue};
+  font-size: 16px;
+  line-height: 1.5;
+  color: ${variables.basicBlue};
+  background-color: transparent;
   border-radius: 12px;
+  transition: background-color 250ms ease-in-out;
+  &:hover,
+  &:focus {
+    color: ${variables.hoverBlue};
+  }
 `;
 
 export const FavoriteHeart = styled.button`

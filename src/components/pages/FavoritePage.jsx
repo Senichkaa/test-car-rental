@@ -16,6 +16,7 @@ import {
   setIsFavoriteFiltered,
 } from '../../redux/favorite/favoriteSlice';
 import { selectAllCars } from '../../redux/cars/carsSelectors';
+import NoCars from 'components/NoCars/NoCars';
 
 const FavoritePage = () => {
   const dispatch = useDispatch();
@@ -41,6 +42,8 @@ const FavoritePage = () => {
             changeFilter={value => dispatch(setFavoriteFilters(value))}
           />
           <Cars cars={isFavoriteFiltered ? filteredFavorite : favoriteCars} />
+
+          {!isFavoriteFiltered && !favoriteCars.length && <NoCars />}
         </section>
       </MainContainer>
     </>

@@ -19,7 +19,6 @@ import {
   CatalogSection,
   LoadMoreButton,
 } from 'components/Cars/CarCard/CarCard.styled';
-// import { brands } from 'components/Filter/brands';
 import {
   setFilteredCars,
   setIsFiltered,
@@ -59,21 +58,12 @@ const CatalogPage = () => {
         />
         {!isLoading && <Cars cars={isFiltered ? filteredCars : carsPerPage} />}
 
-        {/* {isLoadMore && (
-          <LoadMoreButton
-            type="button"
-            onClick={() => dispatch(setPage(page + 1))}
-          >
-            Load some more
-          </LoadMoreButton>
-        )} */}
-
         {isLoadMore && !isFiltered && (
           <LoadMoreButton
             type="button"
             onClick={() => dispatch(setPage(page + 1))}
           >
-            Show more
+            Load more
           </LoadMoreButton>
         )}
       </MainContainer>

@@ -147,7 +147,6 @@ const Filter = ({
     })
   );
 
-  console.log('is filtered:', isFiltered);
   const selectPriceHandler = selectedPrice => {
     changeFilter({ rentalPrice: selectedPrice });
     setSelectedPrice(selectedPrice);
