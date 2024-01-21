@@ -46,7 +46,6 @@ const CatalogPage = () => {
     dispatch(fetchAllCars());
   }, [dispatch]);
 
-  console.log(isLoadMore);
   return (
     <CatalogSection>
       <MainContainer>

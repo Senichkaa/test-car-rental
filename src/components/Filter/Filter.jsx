@@ -62,7 +62,7 @@ const Filter = ({
   }, [filters, isFilterEmpty, setSearchParams]);
 
   const searchBrandHandler = selectedBrand => {
-    dispatch(changeFilter({ make: selectedBrand }));
+    changeFilter({ make: selectedBrand });
     setSelectedBrand(selectedBrand);
     setIsDropdownOpen(false);
   };
@@ -77,26 +77,31 @@ const Filter = ({
 
   const filterCars = (car, filters) => {
     return Object.entries(filters).every(([param, value]) => {
-      value = Number(value);
       switch (param) {
         case 'make':
-          return !value || value >= car[param];
+          return !value || car[param] === value;
         case 'rentalPrice':
+          value = Number(value);
           return !value || car[param] <= value;
         case 'startMileage':
-          return (
-            value <= car['mileage'] &&
-            (!filters.endMileage ||
-              car['mileage'] <= filters.endMileage ||
-              !filters.startMileage)
-          );
+          value = Number(value);
+          if (filters.endMileage !== '') {
+            return (
+              !value ||
+              (car['mileage'] >= value && car['mileage'] <= filters.endMileage)
+            );
+          }
+          return !value || car['mileage'] >= value;
         case 'endMileage':
-          return (
-            value >= car['mileage'] &&
-            (!filters.startMileage ||
-              car['mileage'] >= filters.startMileage ||
-              !filters.endMileage)
-          );
+          value = Number(value);
+          if (filters.startMileage !== '') {
+            return (
+              !value ||
+              (car['mileage'] <= value &&
+                car['mileage'] >= filters.startMileage)
+            );
+          }
+          return !value || car['mileage'] <= value;
         default:
           return true;
       }
@@ -218,7 +223,7 @@ const Filter = ({
           <MileageContainer>
             <MileageFromText>From</MileageFromText>
             <MileageFrom
-              id="mileage"
+              id="mileageFrom"
               value={filters && filters.startMileage}
               min="500"
               type="number"
@@ -229,7 +234,7 @@ const Filter = ({
 
             <MileageToText>To</MileageToText>
             <MileageTo
-              id="mileage"
+              id="mileageTo"
               value={filters && filters.endMileage}
               min="500"
               type="number"
