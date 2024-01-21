@@ -88,20 +88,28 @@ const Filter = ({
           if (filters.endMileage !== '') {
             return (
               !value ||
-              (car['mileage'] >= value && car['mileage'] <= filters.endMileage)
+              (car['mileage'] !== '' &&
+                Number(car['mileage']) >= value &&
+                Number(car['mileage']) <= Number(filters.endMileage))
             );
           }
-          return !value || car['mileage'] >= value;
+          return (
+            !value || (car['mileage'] !== '' && Number(car['mileage']) >= value)
+          );
         case 'endMileage':
           value = Number(value);
           if (filters.startMileage !== '') {
             return (
               !value ||
-              (car['mileage'] <= value &&
-                car['mileage'] >= filters.startMileage)
+              (car['mileage'] !== '' &&
+                Number(car['mileage']) <= value &&
+                Number(car['mileage']) >= Number(filters.startMileage))
             );
           }
-          return !value || car['mileage'] <= value;
+          return (
+            !value || (car['mileage'] !== '' && Number(car['mileage']) <= value)
+          );
+
         default:
           return true;
       }
