@@ -17,7 +17,7 @@ export const favoriteSlice = createSlice({
     setIsFavoriteFiltered: (state, action) => {
       state.isFavoriteFiltered = action.payload;
     },
-    setFavFilters: (state, action) => {
+    setFavoriteFilters: (state, action) => {
       state.favoriteFilters = { ...state.favoriteFilters, ...action.payload };
     },
     addToFavoriteList(state, action) {
