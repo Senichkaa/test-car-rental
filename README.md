@@ -5,8 +5,8 @@
 - [React](https://react.dev/)
 - [Redux](https://redux.js.org/) - State managing
 - [Mock API](https://mockapi.io/) - Saving data about cars
-- [Axios](https://axios-http.com/) - for connections to API's This site was
-  built using [GitHub Pages](https://pages.github.com/)
+- [Axios](https://axios-http.com/) - for connections to API's
+- This site was built using [GitHub Pages](https://pages.github.com/)
 
 ## Features:
 
